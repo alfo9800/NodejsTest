@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>사용자 수정 테스트</title>
+    </head>
+    <body>
+        <h1>사용자 수정</h1>
+        <br>
+        <form method="post" action="/process/updateuser" id="actionform">
+        <table>
+            <tr>
+                <td>아이디</td>
+                <td>
+                    <input type="text" name="id" value="<%= id %>" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>사용자명</td>
+                <td>
+                    <input type="text" name="name" value="<%= name %>">
+                </td>
+            </tr>
+            <tr>
+                <td>나이</td>
+                <td>
+                    <input type="text" name="age" value="<%= age %>">
+                </td>
+            </tr>
+            <tr>
+                <td>암호</td>
+                <td>
+                    <input type="password" name="password" value="<%= password %>">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="수정">
+                    <input type="button" value="삭제" id="deleteuser">
+                    <input type="button" value="리스트" onclick="location.replace('/process/listuser')">
+                </td>
+            </tr>
+        </table>
+        </form>
+        <script>
+            var deleteuser = document.getElementById('deleteuser');
+            var actionform = document.getElementById('actionform');
+            deleteuser.onclick = function() {
+                if(confirm("정말로 삭제 하시겠습니까?")) {
+                    actionform.setAttribute("action","/process/deleteuser");
+                    actionform.submit();//post방식은 url로 삭제하지 못하고, 반드시 현재폼에서만, 삭제가 가능
+                }
+            }
+        </script>
+    </body>
+</html>
